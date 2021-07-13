@@ -42,9 +42,9 @@ vector<int>vis(vertex+1,0);
 f(i,0,vertex){
 if(vis[i]==0)
 {
-cout<<bfs(vertex,adj,i,visited);
+cout<<bfs(vertex,adj,i,vis);
 }
 //if()
 }
 return 0;
-	}
+}
