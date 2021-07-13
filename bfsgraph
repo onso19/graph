@@ -3,11 +3,11 @@
 #define f(i, a, b) for (int i = a; i < b; i++)
 
 using namespace std;
-vector<int> bfs(int vertex , vector<int>adj[vertex+1] ,int node ,vector<int>&visited)
+vector<int> bfs(int vertex , vector<int>adj[] ,int node ,vector<int>&visited)
 { visited[node]=1;
 	vector <int> v;
 	queue<int>q;
-	q.push(adj[node]);
+	q.push(node);
 while(!q.empty()){
 int temp=q.front();
 q.pop();
@@ -42,9 +42,9 @@ vector<int>vis(vertex+1,0);
 f(i,0,vertex){
 if(vis[i]==0)
 {
-cout<<bfs(vertex,adj,i,vis);
+bfs(vertex,adj,i,vis);
 }
-//if()
+
 }
 return 0;
 }
