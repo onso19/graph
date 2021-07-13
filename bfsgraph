@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define f(i, a, b) for (int i = a; i < b; i++)
+
+using namespace std;
+vector<int> bfs(int vertex , vector<int>adj[vertex+1] ,int node ,vector<int>&visited)
+{ visited[node]=1;
+	vector <int> v;
+	queue<int>q;
+	q.push(adj[node]);
+while(!q.empty()){
+int temp=q.front();
+q.pop();
+v.push_back(temp);
+for(auto it:adj[temp] )
+{
+	if(!visited[it])
+{    visited[it]=true; 
+	q.push(it);
+}
+}
+}
+return v;
+}
+
+
+
+
+int main() {
+int vertex;
+int edges;
+cin>>vertex>>edges;
+vector <int> adj[vertex+1];
+f(i,0,edges)
+{int u,v; 
+cin>>u>>v;
+adj[u].push_back(v);
+adj[v].push_back(u);
+
+}
+vector<int>vis(vertex+1,0);
+f(i,0,vertex){
+if(vis[i]==0)
+{
+cout<<bfs(vertex,adj,i,visited);
+}
+//if()
+}
+return 0;
+	}
