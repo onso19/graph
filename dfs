@@ -4,6 +4,7 @@
 
 void dfs(int currentvertex, vector<int>&storingvector,vector<int> adj[],vector<int> &visited)
 {
+//using of & in visited and storingvector is must because we want to remember the previous value in memory
 	if(visited[currentvertex]==0){
 		visited[currentvertex]=1;
 	storingvector.push_back(currentvertex);
