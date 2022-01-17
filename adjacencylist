@@ -1,24 +1,33 @@
-
-#include <iostream>
-#include<bits/stdc++.h>
-#define ll long long
-#define f(i, a, b) for (int i = a; i < b; i++)
-
-using namespace std;
-
-int main() {
-
-int vertex;
-int edges;
+ #include<bits/stdc++.h>
+// #define in int
+ using namespace std;
+ 
+ int main()
+ {
+int vertex,edges;
 cin>>vertex>>edges;
-vector <int> adj[vertex+1];
-f(i,0,edges)
-{int u,v; 
-cin>>u>>v;
-adj[u].push_back(v);
-adj[v].push_back(u);
+
+// We are taking an array which is storing the vector 
+vector<int> adj[vertex+1];
+
+for(int i =1;i<edges+1;i++)
+{
+	int vertex1,vertex2;
+cin>>vertex1>>vertex2;
+adj[vertex1].push_back(vertex2);
+adj[vertex2].push_back(vertex1);
 
 }
+for(int i=1;i<vertex+1;i++)
+{
+cout<<i<<" -> ";
 
+for(auto j: adj[i])
+{
+cout<<j<<" , ";
+}
+cout<<endl;
+
+}
 return 0;
-	}
+ }
