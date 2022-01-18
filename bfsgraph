@@ -1,50 +1,70 @@
 #include<bits/stdc++.h>
-#define ll long long
-#define f(i, a, b) for (int i = a; i < b; i++)
-
+#include <iostream>
 using namespace std;
-vector<int> bfs(int vertex , vector<int>adj[] ,int node ,vector<int>&visited)
-{ visited[node]=1;
-	vector <int> v;
-	queue<int>q;
-	q.push(node);
-while(!q.empty()){
-int temp=q.front();
+void bfs(int currentvertex, vector<int>&storingvector,vector<int> adj[],vector<int> &visited)
+{
+// Initialize a queue
+queue<int> q;
+
+//pushing the currentvertex
+q.push(currentvertex);
+visited[currentvertex]=1;
+// now we are running the loop till the queue is not empty
+while(!q.empty())
+{
+int neighbourfindervertex=q.front();
 q.pop();
-v.push_back(temp);
-for(auto it:adj[temp] )
+storingvector.push_back(neighbourfindervertex);
+for(auto neighbour:adj[neighbourfindervertex]){
+   if(!visited[neighbour]){
+       q.push(neighbour);
+       visited[neighbour]=1;
+   } 
+}
+}
+}
+int main()
 {
-	if(!visited[it])
-{    visited[it]=true; 
-	q.push(it);
-}
-}
-}
-return v;
-}
-
-
-
-
-int main() {
-int vertex;
-int edges;
+int vertex,edges;
 cin>>vertex>>edges;
-vector <int> adj[vertex+1];
-f(i,0,edges)
-{int u,v; 
-cin>>u>>v;
-adj[u].push_back(v);
-adj[v].push_back(u);
 
-}
-vector<int>vis(vertex+1,0);
-f(i,0,vertex){
-if(vis[i]==0)
+vector<int> adj[vertex+1];
+
+for(int i =1;i<edges+1;i++)
 {
-bfs(vertex,adj,i,vis);
-}
+	int vertex1,vertex2;
+cin>>vertex1>>vertex2;
+adj[vertex1].push_back(vertex2);
+adj[vertex2].push_back(vertex1);
 
 }
-return 0;
+
+vector<int> visited(vertex+1,0);
+vector<int>storingvector;
+for(int i =1;i<vertex+1;i++)
+{
+	if(!visited[i])
+	{
+		bfs(i,storingvector,adj,visited);
+	}
 }
+
+for(int i=0;i<storingvector.size();i++){
+	cout<<storingvector[i]<<" ";
+}
+
+return 0;
+ }
+/*
+9 8
+1 5
+1 2
+5 4
+2 3
+4 3
+4 6
+7 8
+7 9
+
+output: 1 5 2 4 3 6 7 8 9
+*/
